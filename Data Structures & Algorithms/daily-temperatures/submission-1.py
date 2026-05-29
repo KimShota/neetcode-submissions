@@ -1,0 +1,14 @@
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        # aim for O(n)
+        stack = []
+        result = [0] * len(temperatures) 
+
+        for i in range(len(temperatures)):
+            while stack and temperatures[i] > temperatures[stack[len(stack) - 1]]:
+                a = stack.pop()
+                result[a] = i - a 
+            stack.append(i)
+            
+        return result
+
